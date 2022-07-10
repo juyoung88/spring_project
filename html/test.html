@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEET PLAY SHARE, 메가박스</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href = "css/mystyle.css">
+    
+</head>
+<body>
+    <div id="navbar"></div>
+    <script>
+        $(function() {
+        $("#navbar").load("navbar.html");
+        });
+    </script>
+    <link rel="stylesheet" href = "css/form.css">
+    <div class="main-container">
+        <div class="form-image">
+            <img src="https://newsimg.sedaily.com/2019/11/13/1VQS4GJBMQ_3.jpg">
+        </div>
+        <div class="form-block">
+            <div class="form-container">
+                <h3>빠른예매</h3>
+                <form>
+                    <div class="form-row">
+                        <input type="date" id="date" name="date" min="2021-07-04" max="2021-07-20"><br>
+                        <select id="movie_no" name="movie_no">
+                            <option value="1">토르:러브 앤 썬더</option>
+                            <option value="2">탑건:매버릭</option>
+                            <option value="3">헤어질 결심</option>
+                            <option value="4">범죄도시 2</option>
+                        </select><br>
+                        <select id="time" name="time">
+                        <option value="1"></option>
+                        <option value="2"></option>
+                        <option value="3"></option>
+                        <option value="4"></option>
+                        <option value="5"></option>
+                    </select><br>
+                    <input type="submit" class="submit-btn" value="예매하기">
+                    </div>
+            </form>
+            </div>
+        <script>
+            var hours = new Date().getHours();
+            var mins = 0;
+            console.log(mins);
+            hours.toString();
+            hours = hours + ":";
+            var hours = hours + mins;
+            var today = new Date().toISOString().split('T')[0];
+            var max = new Date();
+            max.setDate(max.getDate() + 3);
+            max = max.toISOString().split('T')[0];
+            document.getElementsByName("date")[0].min=today;
+            document.getElementsByName("date")[0].max=max;
+            
+            for(let i=0;i<5;i++) {
+                var temp = parseInt(hours);
+                var temp_min=mins;
+                if(i>0)
+                    temp=temp+2;
+                else
+                    temp=temp+1;
+                if(temp>=24) {
+                    temp=0 + temp-24;
+                }
+                if(temp>1 && temp<8) {
+                    break;
+                }
+                console.log(temp);
+                temp_min = temp_min+10;
+                if(temp_min>60) {
+                    hours=hours+1;
+                    temp = temp + 1;
+                    temp_min=0
+                }
+                hours = temp;
+                min = temp_min;
+                temp = temp + ":";
+                temp = temp + temp_min;
+                document.getElementsByName('time')[0].options[i].innerHTML=temp;
+            }
+        </script>
+    </div>
+    </div>
+</body>
+</body>
+</html>
